@@ -1,0 +1,85 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.1"
+    defaultConfig {
+        applicationId "com.example.concretetest"
+        minSdkVersion 15
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            resValue "bool", "is_release", "false"
+            buildConfigField "String", "TOKEN_1", "\"liebersonsantos:9a1b7d98917278309f\""
+            buildConfigField "String", "TOKEN_2", "\"0183271c05883973d294c4\""
+            buildConfigField "String", "BASE_URL", "\"https://api.github.com\""
+            minifyEnabled false
+            testCoverageEnabled false
+        }
+
+        release {
+            resValue "bool", "is_release", "true"
+            buildConfigField "String", "TOKEN_1", "\"liebersonsantos:9a1b7d98917278309f\""
+            buildConfigField "String", "TOKEN_2", "\"0183271c05883973d294c4\""
+            buildConfigField "String", "BASE_URL", "\"https://api.github.com\""
+            minifyEnabled true
+            shrinkResources true
+            debuggable false
+            testCoverageEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    /*############ Material Design / CircleImageView ###########*/
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    /*############################################################################*/
+
+    /*############################ Retrofit ######################################*/
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${rootProject.retrofit}"
+    implementation "com.squareup.retrofit2:retrofit:${rootProject.retrofit}"
+    /*############################################################################*/
+
+    /*############################ Gson: Json Converter ##########################*/
+    implementation "com.squareup.retrofit2:converter-gson:${rootProject.retrofit}"
+    implementation "com.google.code.gson:gson:${rootProject.gson}"
+    /*############################################################################*/
+
+    /*################ Facebook Sthetho for debug conections #####################*/
+    implementation "com.facebook.stetho:stetho:${rootProject.stetho}"
+    implementation "com.facebook.stetho:stetho-okhttp3:${rootProject.stetho}"
+    /*############################################################################*/
+
+    /*########################### ReactiveX ######################################*/
+    implementation "io.reactivex.rxjava2:rxjava:${rootProject.rxjava}"
+    implementation "io.reactivex.rxjava2:rxandroid:${rootProject.rxandroid}"
+    /*############################################################################*/
+
+    /*###########################Butter Knife#####################################*/
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    /*############################################################################*/
+
+    /*################################Picasso#####################################*/
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    /*############################################################################*/
+}
